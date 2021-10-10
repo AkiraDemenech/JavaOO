@@ -9,7 +9,7 @@ public class ContaCorrente extends ContaBancaria {
 	}
 	public ContaCorrente (ContaBancaria conta) {
 		super(conta);
-		if(conta.getClass() == this.getClass()) 
+		if(conta != null && conta.getClass() == this.getClass()) 
 			this.setLimite(((ContaCorrente)conta).getLimite());					
 	}
 	public ContaCorrente (String nomeCliente) {
@@ -18,6 +18,14 @@ public class ContaCorrente extends ContaBancaria {
 	public ContaCorrente (String nomeCliente, String numeroConta) {
 		super(nomeCliente, numeroConta);
 	}
+	public ContaCorrente (String nomeCliente, String numeroConta, BigDecimal limite) {
+		this(nomeCliente, numeroConta);
+		setLimite(limite);
+	}
+	public ContaCorrente (String nomeCliente, String numeroConta, double limite) {
+		this(nomeCliente, numeroConta);
+		setLimite(limite);
+	}	
 	
 	@Override
 	public boolean sacar (BigDecimal saque) {
@@ -36,15 +44,19 @@ public class ContaCorrente extends ContaBancaria {
 	}
 	
 	
-	private BigDecimal limite = null;
+	private BigDecimal limite = BigDecimal.ZERO;
 	
 	public BigDecimal getLimite () {
 		return this.limite;
 	}
 	
+	public void setLimite (double limite) {
+		setLimite(new BigDecimal(limite));
+	}
+
 	public void setLimite (BigDecimal limite) {
 		if(limite == null)
-			limite = new BigDecimal(0);
+			limite = BigDecimal.ZERO;
 		this.limite = limite;
 	}
 	

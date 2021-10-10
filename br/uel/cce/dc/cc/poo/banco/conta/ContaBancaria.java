@@ -21,6 +21,7 @@ public class ContaBancaria {
 		this(nomeCliente);
 		setNumero(numeroConta);				
 	}
+
 	
 	
 	public boolean sacar (double saque) {
@@ -48,7 +49,7 @@ public class ContaBancaria {
 	
 	private String cliente = null;
 	private String numeroConta = null;
-	private BigDecimal saldo = null;
+	private BigDecimal saldo = BigDecimal.ZERO;
 	
 	public void setNumero (String numero) {
 	//	System.out.println(numero);
@@ -70,10 +71,14 @@ public class ContaBancaria {
 		return this.saldo;
 	}
 	
+	protected void setSaldo (double saldo) {
+		setSaldo(new BigDecimal(saldo));
+	}
+
 	protected void setSaldo (BigDecimal saldo) {
 		// nem todo mundo deveria ter o direito de alterar o saldo de alguém
 		if(saldo == null)
-			saldo = new BigDecimal(0);
+			saldo = BigDecimal.ZERO;
 		this.saldo = saldo;
 	}
 	

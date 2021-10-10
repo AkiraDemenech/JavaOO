@@ -19,7 +19,8 @@ public class Cliente {
 		setChegada(hora,min);
 	}
 	public Cliente (String nome, int idade, LocalTime chegada) {
-		this(nome,idade,chegada.getHour(),chegada.getMinute());
+		this(nome,idade,0,0);
+		setChegada(chegada);
 	}
 	public int getHoraChegada () {
 		return this.hora;
@@ -28,7 +29,8 @@ public class Cliente {
 		return this.min;
 	}
 	public void setChegada (LocalTime chegada) {
-		setChegada(chegada.getHour(), chegada.getMinute());
+		if(chegada != null)
+			setChegada(chegada.getHour(), chegada.getMinute());
 	}
 	public void setChegada (int hora, int min) {
 		this.hora = hora;
@@ -57,7 +59,7 @@ public class Cliente {
 		this.servico = servico;
 	}
 	
-	private String servico = null;
+	private String servico = "";
 	private String nome;
 	private int idade;
 	private int hora;
@@ -84,14 +86,12 @@ public class Cliente {
 			if(obj.getClass() == String.class)
 				nome = ((String) obj).toUpperCase().trim();
 			else return false;
-		} else {
-			nome = ((Cliente) obj).getNome();
-		}
+		} else	nome = ((Cliente) obj).getNome();		
 		
 		if (this.nome != nome) {
 			if (this.nome == null || nome == null)
 				return false;
-		} else return true; 
+		} else	return true; 
 		return this.nome.equals(nome);
 	}		
 }

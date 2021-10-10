@@ -9,7 +9,7 @@ public class ContaPoupanca extends ContaBancaria {
 	}
 	public ContaPoupanca (ContaBancaria conta) {
 		super(conta);
-		if(conta.getClass() == this.getClass()) 
+		if(conta != null && conta.getClass() == this.getClass()) 
 			this.setDiaRendimento(((ContaPoupanca)conta).getDiaRendimento());
 	}
 	public ContaPoupanca (String nomeCliente) {
@@ -18,10 +18,15 @@ public class ContaPoupanca extends ContaBancaria {
 	public ContaPoupanca (String nomeCliente, String numeroConta) {
 		super(nomeCliente, numeroConta);
 	}
+	public ContaPoupanca (String nomeCliente, String numeroConta, int diaRendimento) {
+		this(nomeCliente, numeroConta);
+		setDiaRendimento(diaRendimento);
+	}
 	
+	public static final BigDecimal CEM = new BigDecimal(100);
 	public void calcularNovoSaldo (BigDecimal taxaRendimento) {
 		if(getSaldo() != null && taxaRendimento != null)
-			depositar(getSaldo().multiply(taxaRendimento).divide(new BigDecimal(100)));
+			depositar(getSaldo().multiply(taxaRendimento).divide(CEM));
 	}
 	public void calcularNovoSaldo (double taxaRendimento) {
 		calcularNovoSaldo(new BigDecimal(taxaRendimento));

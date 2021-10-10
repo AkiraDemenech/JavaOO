@@ -23,6 +23,7 @@ public class Fila {
 		Scanner entrada = new Scanner(System.in);
 		String ln, lower;
 		do {
+			System.out.print(">");
 			ln = entrada.nextLine().trim();
 			lower = ln.toLowerCase();
 			if(lower.startsWith(entrar)) 

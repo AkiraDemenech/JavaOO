@@ -59,6 +59,7 @@ public class Banco {
 		String in;
 		int i;
 		do {
+			System.out.print("$");
 			in = entrada.next().toLowerCase();
 			
 			if(in.startsWith(agencia)) {
